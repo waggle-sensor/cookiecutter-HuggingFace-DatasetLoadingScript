@@ -38,6 +38,14 @@ After that, you'll have a new directory with the provided `name` and with the fo
 | {name}.py | dataset loading script template |
 | README.md | [dataset card](https://huggingface.co/docs/datasets/v2.14.4/en/dataset_card) with metadata template|
 
+## Testing Your Loading Script
+
+Once, you completed your loading script you can test it by generating dataset metadata following this [documentation](https://huggingface.co/docs/datasets/main/en/dataset_script#optional-generate-dataset-metadata). If everything was configured correctly the command should run error free and the metadata generated in `README.md` will be correct.
+
+## Uploading to the Hub
+
+Once the loading script is working correctly, follow this [documentation](https://huggingface.co/docs/datasets/main/en/share) to upload your dataset loading script to HuggingFace.
+
 
 ## More information
 
