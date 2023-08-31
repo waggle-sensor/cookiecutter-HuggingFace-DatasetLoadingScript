@@ -1,0 +1,95 @@
+
+{
+    "name": "my dataset name",
+    "__repo_name": "{{ cookiecutter.name|lower|replace(' ', '') }}",
+    "description": "My dataset description",
+    "author": "My name",
+    "email": "My Email",
+    "url": "https://example.com/my-dataset/my-dataset.zip",
+    "homepage": "https://example.com/my-dataset-homepage",
+    "license": "openrail",
+    "citation": "@article{article_id,\nauthor    = {Author List},\ntitle     = {Dataset Paper Title},\njournal   = {Publication Venue},\nyear      = {2525}\n}",
+    "gated_dataset": false,
+    "disable_viewer": false,
+    "kind": [
+        "image",
+        "audio",
+        "text"
+    ],
+    "task_category": [
+        "image-classification",
+        "zero-shot-image-classification",
+        "image-segmentation",
+        "object-detection",
+        "feature-extraction",
+        "audio-classification",
+        "depth-estimation",
+        "other"
+    ],
+    "task":[
+        "(image-classification) multi-label-image-classification",
+        "(image-classification) multi-class-image-classification",
+        "(image-segmentation) instance-segmentation", 
+        "(image-segmentation) semantic-segmentation",
+        "(image-segmentation) panoptic-segmentation",
+        "(object-detection) face-detection", 
+        "(object-detection) vehicle-detection",
+        "(audio-classification) keyword-spotting", 
+        "(audio-classification) speaker-identification", 
+        "(audio-classification) audio-intent-classification",
+        "other"
+    ],
+    "__realtask": "{{ cookiecutter.task|replace('(' + cookiecutter.task_category + ')', '') }}",
+    "autotrain": false,
+    "splits": [
+        "none",
+        "2-splits",
+        "3-splits"
+    ],
+    "metric": [
+        "none",
+        "accuracy",
+        "bertscore",
+        "mean_iou",
+        "f1",
+        "mae",
+        "mape",
+        "mase",
+        "matthews_correlation",
+        "mse",
+        "pearsonr",
+        "precision",
+        "recall",
+        "r-squared",
+        "roc_auc",
+        "smape",
+        "spearmanr",
+        "other"
+    ],
+    "tags": [
+        "none",
+        "climate",
+        "biology",
+        "energy",
+        "other"
+    ],
+    "__prompts__": {
+        "gated_dataset": "Do you want to enable User Access requests?",
+        "disable_viewer": "Do you want to disable dataset preview on the dataset page?",
+        "splits": "How many splits does your dataset have (train,val,test)?",
+        "task_category": "Which task category does your dataset fall into?",
+        "task": "What task will this dataset be used for?",
+        "autotrain": "Enable train and evaluation info for AutoTrain or Evaluation on model Hub (https://huggingface.co/autotrain)",
+        "metric": "Which metric do you want to use for AutoTrain or Evaluation on model Hub?",
+        "url": "url pointing to the dataset file",
+        "name": "name of the dataset",
+        "description": "description of the dataset",
+        "author": "name of the dataset author",
+        "email": "email of the dataset author",
+        "license": "license of the dataset",
+        "citation": "citation for the dataset (use \\n for line breaks)",
+        "homepage": "homepage for the dataset",
+        "tags": "tags for the dataset"
+    }
+    
+}
