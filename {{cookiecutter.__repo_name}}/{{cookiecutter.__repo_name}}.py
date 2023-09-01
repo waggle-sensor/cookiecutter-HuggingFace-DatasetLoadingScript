@@ -10,9 +10,15 @@ import datasets
 import io
 import tarfile
 
-
+# TODO: Provide citation or if it is not needed remove it
+# Example citation:
 _CITATION = """\
-{{cookiecutter.citation}}
+@article{article_id,
+author    = {Author List},
+title     = {Dataset Paper Title},
+journal   = {Publication Venue},
+year      = {2525}
+}
 """
 _DESCRIPTION = """\
 {{cookiecutter.description}}"""
