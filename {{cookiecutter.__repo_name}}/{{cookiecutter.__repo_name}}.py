@@ -729,6 +729,9 @@ class {{cookiecutter.__repo_name}}(datasets.GeneratorBasedBuilder):
 {% elif cookiecutter.kind == "audio" %}
 # No script is configured
 # Full documentation at https://huggingface.co/docs/datasets/main/en/audio_dataset#loading-script
+# loading script examples:
+# - tar.gz file: https://huggingface.co/datasets/vivos/blob/main/vivos.py
+# - zip file: https://huggingface.co/datasets/PolyAI/minds14/blob/main/minds14.py
 
 
 {%- endif %}
