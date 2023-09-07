@@ -599,63 +599,133 @@ class {{cookiecutter.__repo_name}}(datasets.GeneratorBasedBuilder):
     {%- endif %}
 {% elif "zip" in cookiecutter.url%}
     {% if cookiecutter.splits == "none"%}
-    {% elif cookiecutter.splits == "2-splits"%}
-    {% elif cookiecutter.splits == "3-splits"%}
-    {%- endif %}
-{%- endif %}
-
     def _split_generators(self, dl_manager):
+    # TODO: This method is tasked with downloading the data and defining the splits depending on the configuration
 
-        urls = _URLS[self.config.name]
-        data_dir = dl_manager.download_and_extract(urls)
+        # dl_manager is a datasets.download.DownloadManager that can be used to download and extract URLS
+        # It can accept any type or nested list/dict and will give back the same structure with the url replaced with path to local files.
+        #EXAMPLE:
+
+        data_dir = dl_manager.download_and_extract(_URLS) #files in zip can be extracted
+
+        return [
+            datasets.SplitGenerator(
+                name="full",
+                # These kwargs will be passed to _generate_examples
+                gen_kwargs={
+                    "filepath": os.path.join(data_dir, "data.json")
+                },
+            )
+        ]
+
+    # method parameters are unpacked from `gen_kwargs` as given in `_split_generators`
+    def _generate_examples(self, filepath):
+    #TODO: This method is tasked with generating your dataset from URL(S).
+    # If you used sub-sets in `_split_generators` see https://github.com/huggingface/datasets/blob/main/templates/new_dataset_script.py
+
+    #EXAMPLE: For this dataset the zip file contained
+    # a JSON file with the sentence, option, and answer.
+        with open(filepath, encoding="utf-8") as f:
+            for key, row in enumerate(f):
+                data = json.loads(row)
+                yield key, {
+                    "sentence": data["sentence"],
+                    "option": data["option"],
+                    "answer": data["answer"],
+                }
+    {% elif cookiecutter.splits == "2-splits"%}
+    def _split_generators(self, dl_manager):
+    # TODO: This method is tasked with downloading the data and defining the splits depending on the configuration
+
+        # dl_manager is a datasets.download.DownloadManager that can be used to download and extract URLS
+        # It can accept any type or nested list/dict and will give back the same structure with the url replaced with path to local files.
+        #EXAMPLE:
+
+        data_dir = dl_manager.download_and_extract(_URLS) #files in zip can be extracted
+
         return [
             datasets.SplitGenerator(
                 name=datasets.Split.TRAIN,
                 # These kwargs will be passed to _generate_examples
                 gen_kwargs={
-                    "filepath": os.path.join(data_dir, "train.jsonl"),
-                    "split": "train",
-                },
-            ),
-            datasets.SplitGenerator(
-                name=datasets.Split.VALIDATION,
-                # These kwargs will be passed to _generate_examples
-                gen_kwargs={
-                    "filepath": os.path.join(data_dir, "dev.jsonl"),
-                    "split": "dev",
+                    "filepath": os.path.join(data_dir, "train.json")
                 },
             ),
             datasets.SplitGenerator(
                 name=datasets.Split.TEST,
                 # These kwargs will be passed to _generate_examples
                 gen_kwargs={
-                    "filepath": os.path.join(data_dir, "test.jsonl"),
-                    "split": "test"
+                    "filepath": os.path.join(data_dir, "test.json")
                 },
-            ),
+            ) 
         ]
 
     # method parameters are unpacked from `gen_kwargs` as given in `_split_generators`
-    def _generate_examples(self, filepath, split):
-        # TODO: This method handles input defined in _split_generators to yield (key, example) tuples from the dataset.
-        # The `key` is for legacy reasons (tfds) and is not important in itself, but must be unique for each example.
+    def _generate_examples(self, filepath):
+    #TODO: This method is tasked with generating your dataset from URL(S).
+    # If you used sub-sets in `_split_generators` see https://github.com/huggingface/datasets/blob/main/templates/new_dataset_script.py
+
+    #EXAMPLE: For this dataset the zip file contained
+    # a JSON file with the sentence, option, and answer.
         with open(filepath, encoding="utf-8") as f:
             for key, row in enumerate(f):
                 data = json.loads(row)
-                if self.config.name == "first_domain":
-                    # Yields examples as (key, example) tuples
-                    yield key, {
-                        "sentence": data["sentence"],
-                        "option1": data["option1"],
-                        "answer": "" if split == "test" else data["answer"],
-                    }
-                else:
-                    yield key, {
-                        "sentence": data["sentence"],
-                        "option2": data["option2"],
-                        "second_domain_answer": "" if split == "test" else data["second_domain_answer"],
-                    }
+                yield key, {
+                    "sentence": data["sentence"],
+                    "option": data["option"],
+                    "answer": data["answer"],
+                }
+    {% elif cookiecutter.splits == "3-splits"%}
+    def _split_generators(self, dl_manager):
+    # TODO: This method is tasked with downloading the data and defining the splits depending on the configuration
 
+        # dl_manager is a datasets.download.DownloadManager that can be used to download and extract URLS
+        # It can accept any type or nested list/dict and will give back the same structure with the url replaced with path to local files.
+        #EXAMPLE:
+
+        data_dir = dl_manager.download_and_extract(_URLS) #files in zip can be extracted
+
+        return [
+            datasets.SplitGenerator(
+                name=datasets.Split.TRAIN,
+                # These kwargs will be passed to _generate_examples
+                gen_kwargs={
+                    "filepath": os.path.join(data_dir, "train.json")
+                },
+            ),
+            datasets.SplitGenerator(
+                name=datasets.Split.VALIDATION,
+                # These kwargs will be passed to _generate_examples
+                gen_kwargs={
+                    "filepath": os.path.join(data_dir, "val.json")
+                },
+            ),
+            datasets.SplitGenerator(
+                name=datasets.Split.TEST,
+                # These kwargs will be passed to _generate_examples
+                gen_kwargs={
+                    "filepath": os.path.join(data_dir, "test.json")
+                },
+            ) 
+        ]
+
+    # method parameters are unpacked from `gen_kwargs` as given in `_split_generators`
+    def _generate_examples(self, filepath):
+    #TODO: This method is tasked with generating your dataset from URL(S).
+    # If you used sub-sets in `_split_generators` see https://github.com/huggingface/datasets/blob/main/templates/new_dataset_script.py
+
+    #EXAMPLE: For this dataset the zip file contained
+    # a JSON file with the sentence, option, and answer.
+        with open(filepath, encoding="utf-8") as f:
+            for key, row in enumerate(f):
+                data = json.loads(row)
+                yield key, {
+                    "sentence": data["sentence"],
+                    "option": data["option"],
+                    "answer": data["answer"],
+                }
+    {%- endif %}
+{%- endif %}
 {% elif cookiecutter.kind == "audio" %}
 # No script is configured
 # Full documentation at https://huggingface.co/docs/datasets/main/en/dataset_script
