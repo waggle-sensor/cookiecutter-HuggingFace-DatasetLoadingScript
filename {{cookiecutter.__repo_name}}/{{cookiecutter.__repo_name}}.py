@@ -10,14 +10,20 @@ import datasets
 import io
 import tarfile
 
-
+# TODO: Provide citation or if it is not needed remove it
+# Example citation:
 _CITATION = """\
-{{cookiecutter.citation}}
+@article{article_id,
+author    = {Author List},
+title     = {Dataset Paper Title},
+journal   = {Publication Venue},
+year      = {2525}
+}
 """
 _DESCRIPTION = """\
 {{cookiecutter.description}}"""
 _HOMEPAGE = "{{cookiecutter.homepage}}"
-_LICENSE = "{{cookiecutter.license}}"
+_LICENSE = "{{cookiecutter.license}}"  #Example: apache-2.0 or any license from https://hf.co/docs/hub/repositories-licenses
 
 #Needed for datasets.Features EXAMPLE
 _NAMES = [

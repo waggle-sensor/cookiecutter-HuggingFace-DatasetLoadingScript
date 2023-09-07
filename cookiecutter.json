@@ -7,8 +7,14 @@
     "email": "My Email",
     "url": "https://example.com/my-dataset/my-dataset.zip",
     "homepage": "https://example.com/my-dataset-homepage",
-    "license": "openrail",
-    "citation": "@article{article_id,\nauthor    = {Author List},\ntitle     = {Dataset Paper Title},\njournal   = {Publication Venue},\nyear      = {2525}\n}",
+    "license": [
+        "openrail",
+        "mit",
+        "apache-2.0",
+        "c-uda",
+        "gpl",
+        "other"
+    ],
     "gated_dataset": false,
     "disable_viewer": false,
     "kind": [
@@ -87,7 +93,6 @@
         "author": "name of the dataset author",
         "email": "email of the dataset author",
         "license": "license of the dataset",
-        "citation": "citation for the dataset (use \\n for line breaks)",
         "homepage": "homepage for the dataset",
         "tags": "tags for the dataset"
     }

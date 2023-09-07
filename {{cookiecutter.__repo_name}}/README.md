@@ -294,7 +294,12 @@ Provide the license and link to the license webpage if available.
 
 Provide the [BibTex](http://www.bibtex.org/)-formatted reference for the dataset. For example: 
 ```
-{{cookiecutter.citation}}
+@article{article_id,
+author    = {Author List},
+title     = {Dataset Paper Title},
+journal   = {Publication Venue},
+year      = {2525}
+}
 ```
 
 If the dataset has a [DOI](https://www.doi.org/), please provide it here.
