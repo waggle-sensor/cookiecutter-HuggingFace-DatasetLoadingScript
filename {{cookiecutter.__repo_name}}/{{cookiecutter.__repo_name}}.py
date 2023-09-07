@@ -1,3 +1,6 @@
+import datasets
+VERSION = datasets.Version("2.14.4") #Source https://github.com/huggingface/datasets/releases
+
 {% if cookiecutter.kind == "image" %}
 # USAGE: this script is used to create an image dataset that is NOT hosted on HuggingFace but points to the original files
 # to download and generate the dataset.
@@ -7,7 +10,6 @@
 
 import csv
 import os
-import datasets
 import io
 import tarfile
 
@@ -39,7 +41,7 @@ _URLS = "{{cookiecutter.url}}"
 #define dataset
 class {{cookiecutter.__repo_name}}(datasets.GeneratorBasedBuilder):
 
-    VERSION = datasets.Version("2.14.4") #Source https://github.com/huggingface/datasets/releases
+
 
     def _info(self):
     # TODO: Define the different columns of the dataset and their types.
@@ -415,8 +417,6 @@ _URLS = "{{cookiecutter.url}}"
 
 #define dataset
 class {{cookiecutter.__repo_name}}(datasets.GeneratorBasedBuilder):
-
-    VERSION = datasets.Version("2.14.4") #Source https://github.com/huggingface/datasets/releases
 
     def _info(self):
     # TODO: Define the different columns of the dataset and their types.
