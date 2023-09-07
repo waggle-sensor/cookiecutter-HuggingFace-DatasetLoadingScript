@@ -728,7 +728,7 @@ class {{cookiecutter.__repo_name}}(datasets.GeneratorBasedBuilder):
 {%- endif %}
 {% elif cookiecutter.kind == "audio" %}
 # No script is configured
-# Full documentation at https://huggingface.co/docs/datasets/main/en/dataset_script
+# Full documentation at https://huggingface.co/docs/datasets/main/en/audio_dataset#loading-script
 
 
 {%- endif %}
