@@ -46,50 +46,26 @@ extra_gated_button_content: "Access Dataset"
 {% if cookiecutter.disable_viewer == true %}
 viewer: false #disables dataset viewer on the dataset page
 {%- endif %}
-{% if cookiecutter.autotrain == true %}
-{% if cookiecutter.task_category != "other" %}
-# Optional. Add this if you want to encode a train and evaluation info in a structured way for AutoTrain or Evaluation on model Hub (https://huggingface.co/autotrain)
-train-eval-index:
-  - config: default # The dataset config name to use.
-    task: {{cookiecutter.task_category}} # The task category name (same as task_category).
-{% else %}
-# **** TODO: configure your task_category here ****
-# Optional. Add this if you want to encode a train and evaluation info in a structured way for AutoTrain or Evaluation on model Hub (https://huggingface.co/autotrain)
-#train-eval-index:
-#  - config: default # The dataset config name to use. Example for datasets without configs: default. Example for glue: sst2
-#    task: {task_name} # The task category name (same as task_category). # Full list at https://github.com/huggingface/hub-docs/blob/main/js/src/lib/interfaces/Types.ts
-{%- endif %}
-{% if cookiecutter.__realtask != "other" %}
-    task_id: {{cookiecutter.__realtask}} # The AutoTrain task id. # Full list at https://github.com/huggingface/hub-docs/blob/main/js/src/lib/interfaces/Types.ts
-{% else %}
-# **** TODO: configure your task here ****
-#    task_id: {task_type} # The AutoTrain task id. Example: extractive_question_answering. # Full list at https://github.com/huggingface/hub-docs/blob/main/js/src/lib/interfaces/Types.ts
-{%- endif %}
-{% if cookiecutter.splits == "2-splits" %}
-    splits:
-      train_split: train      # The split to use for training.
-      eval_split: test        # The split to use for evaluation.
-{% elif cookiecutter.splits == "3-splits" %}
-    splits:
-      train_split: train            # The split to use for training. Example: train
-      eval_split: validation        # The split to use for evaluation. Example: test
-{%- endif %}
-    col_mapping:                    # The columns mapping needed to configure the task_id.
-    # Example for image_classification:
-      # image: image 
-      # label: label
-{% if cookiecutter.metric == "other" %}
-# **** TODO: configure your metric here, more than one metric can be added ****
-#    metrics:
-#      - type: {metric_type}   # The metric id. Example: wer. Use metric id from https://hf.co/metrics
-#        name: {metric_name}   # Tne metric name to be displayed. Example: Test WER
-{% elif cookiecutter.metric != "none" %}
-# more than one category can be added
-    metrics:
-      - type: {{cookiecutter.metric}}  # The metric id. metric id from https://hf.co/metrics
-        name: {{cookiecutter.metric}}  # Tne metric name to be displayed.
-{%- endif %}
-{%- endif %}
+
+# Optional. Add this if you want to encode a train and evaluation info in a structured way for AutoTrain or Evaluation on the Hub
+# train-eval-index:
+#   - config: {config_name}           # The dataset config name to use. Example for datasets without configs: default. Example for glue: sst2
+#     task: {task_name}               # The task category name (same as task_category). Example: question-answering
+#     task_id: {task_type}            # The AutoTrain task id. Example: extractive_question_answering
+#     splits:
+#       train_split: train            # The split to use for training. Example: train
+#       eval_split: validation        # The split to use for evaluation. Example: test
+#     col_mapping:                    # The columns mapping needed to configure the task_id.
+#     # Example for extractive_question_answering:
+#       # question: question
+#       # context: context
+#       # answers:
+#       #   text: text
+#       #   answer_start: answer_start
+#     metrics:
+#       - type: {metric_type}         # The metric id. Example: wer. Use metric id from https://hf.co/metrics
+#         name: {metric_name}         # Tne metric name to be displayed. Example: Test WER
+
 # OPTIONAL: Other configurations you can enable
 #paperswithcode_id: {paperswithcode_id}  # Dataset id on PapersWithCode (from the URL). Example for SQuAD: squad
 #configs:  # Optional for datasets with multiple configurations like glue.
