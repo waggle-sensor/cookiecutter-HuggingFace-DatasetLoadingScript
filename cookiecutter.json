@@ -46,7 +46,6 @@
         "other"
     ],
     "__realtask": "{{ cookiecutter.task|replace('(' + cookiecutter.task_category + ')', '') }}",
-    "autotrain": false,
     "splits": [
         "none",
         "2-splits",
